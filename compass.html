@@ -39,6 +39,7 @@
           box-shadow: 5px 5px 10px rgba(0,0,0,0.4), -5px -5px 10px rgba(255,255,255,0.4);
       }
       .center{
+          position: relative;
           width:50px;
           height:50px;
           /* border:2px solid black; */
@@ -46,6 +47,19 @@
           display: grid;
           place-content: center;
           box-shadow: inset 5px 5px 10px rgba(0,0,0,0.4),inset -5px -5px 10px rgba(255,255,255,0.4);
+      }
+      .center::before{
+          content: "";
+          position: absolute;
+          top:50%;
+          left:50%;
+          transform: translate(-50%,-50%);
+          width:20px;
+          height: 20px;
+          z-index: 1000;
+          border-radius: 10px;
+          background-color: rgb(202, 6, 6);
+          box-shadow: 2px 2px 5px rgba(0,0,0,0.4), -2px -2px 5px rgba(255,255,255,0.4);
       }
       .hand{
             position: relative;
@@ -84,7 +98,7 @@
         <div class="compass">
             <div class="center">
                 <div class="hand">
-    
+                    
                 </div>
             </div>
         </div>
@@ -123,6 +137,11 @@
               $(".hand").addClass("animate");
               setTimeout(function(){$(".hand").removeClass("animate");},3000);
           })
+      });
+      screen.orientation.addEventListener("change",()=>{
+          var angle=screen.orientation.angle;
+          $(".hand").css("transform","rotate("+angle+"deg)");
+
       })
 
   </script>
