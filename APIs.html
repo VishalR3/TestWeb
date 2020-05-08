@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>CSS Transform Tutorial</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+  <style>
+      body{
+          width: 100vw;
+          height: 100vh;
+          margin:0;
+          padding:0;
+          background: rgb(212, 202, 180);
+          display: grid;
+          place-content: center;
+      }
+  </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">API tests</div>
+        <div class="info"></div>
+        <button class="vibrate">Vibrate</button>
+    </div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/init.js"></script>
+  <script>
+      screen.orientation.addEventListener("change",()=>{
+          var angle=screen.orientation.angle;
+          var type = screen.orientation.type;
+          $(".info").append(`screen angle is ${angle} and type is ${type}`);
+      });
+      $(".vibrate").click(()=>{
+          navigator.vibrate([200,100,200]);
+        });
+        $(".info").append(`user agent is ${navigator.userAgent}`);
+
+        window.addEventListener("userproximity",function(event){
+            var val=DeviceProximityEvent.value;
+            var min=DeviceProximityEvent.min;
+            var max=DeviceProximityEvent.max;
+            $(".info").append(`proximity : ${val}<br>Min : ${min}<br>Max : ${max}`);
+        })
+      
+
+  </script>
+
+</body>
+
+</html>

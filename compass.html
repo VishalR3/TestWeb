@@ -141,6 +141,7 @@
       screen.orientation.addEventListener("change",()=>{
           var angle=screen.orientation.angle;
           $(".hand").css("transform","rotate("+angle+"deg)");
+          console.log(`angle is ${angle}`);
 
       })
 
