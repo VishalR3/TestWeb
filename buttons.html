@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Test Web</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+  <link href="css/mmenu.css">
+  <link href="js/mmenu/wrappers/bootstrap/mmenu.bootstrap.css">
+  <style>
+      body{
+          margin:0;
+          padding: 0;
+      }
+      .wrapper{
+          position: fixed;
+          top:0;
+          left:0;
+          right:0;
+          bottom: 0;
+          background: #eee1e1;
+      }
+      .button{
+          position: absolute;
+          top:50%;
+          left:50%;
+          transform: translate(-50%,-50%);
+          display: flex;
+      }
+      #btn_add{
+          position: relative;
+          align-self: center;
+          padding:5px 45px;
+          border-radius: 20px;
+          background: #eee1e1;
+          border:0;
+          box-shadow: 2px 2px 5px rgba(0,0,0,0.4), -2px -2px 5px rgba(255,255,255,0.4);
+      }
+      .plus,.minus{
+          position: absolute;
+          top:0;
+          width:30px;
+          background: #e2caca;
+          border:0;
+          align-self: center;
+          height: 100%;
+      }
+      .plus:hover{
+          box-shadow: 2px 0 4px rgba(0,0,0,0.4);
+      }
+      .minus:hover{
+          box-shadow: -2px 0 4px rgba(0,0,0,0.4);
+      }
+      .plus{
+          left:0;
+          border-radius: 20px 0 0 20px;
+      }
+      .minus{
+          right:0;
+          border-radius: 0 20px 20px 0;
+      }
+      .cart_btn{
+        width:40px;
+        height:40px;
+        border-radius: 20px;
+        margin-left: 10px ;
+        border:0;
+        background: #eee1e1;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.4), -2px -2px 5px rgba(255,255,255,0.4);
+        transition: all;
+        transition-duration: 0.5s;
+      }
+      .cart_btn:hover{
+            width:120px
+      }
+    
+  </style>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="button">
+            <div class="add_btn" id="btn_add"><span class="cart_qty">Add</span>
+            </div>
+                <div>
+                    <button class="cart_btn">Add</button>
+                </div>
+        </div>
+
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+
+</html>

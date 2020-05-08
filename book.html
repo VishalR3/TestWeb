@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>CSS Transform Tutorial</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+  <style>
+      body{
+          width: 100vw;
+          height: 100vh;
+          margin:0;
+          padding:0;
+          background: rgb(212, 202, 180);
+          display: grid;
+          place-content: center;
+      }
+      .book{
+          width:200px;
+          height:200px;
+          background: url("img.jpg");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          filter:blur(50%);
+          box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+          transform: rotate(-30deg) skewY(10deg);
+          transition: 1s;
+          font-family: "Livvic";
+          perspective: 30px;
+      }
+      .book::before {
+          content: " ";
+          position: absolute;
+          width : 20px;
+          height : 200px;
+          background: url("img.jpg");
+          filter: brightness(50%);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          transform:skewY(-45deg) translate(-20px,-10px);
+      }
+      .book::after{
+          content: " ";
+          position: absolute;
+          bottom: 0;
+          width: 200px;
+          height: 20px;
+          background: rgb(221, 189, 8);
+          transform: skewX(-45deg) translate(10px ,20px);
+      }
+      .book:hover{
+          margin-top:-50px;
+          box-shadow: 10px 10px 70px rgba(0,0,0,0.3);
+      }
+      .title{
+          position: absolute;
+          top:62%;
+          display: inline-block;
+          width: 100%;
+          font-size: 18px;
+          font-weight: 600;
+          background: rgba(137, 43, 226, 0.719);
+          padding:5px 20px;
+          box-sizing: border-box;
+      }
+      .author{
+          position: absolute;
+          bottom: 5px;
+          right:0;
+          padding: 5px 10px 5px 10px;
+          background: black;
+          color: white;
+          font-size: 10px;
+      }
+  </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="book">
+            <div class="title">Web Development</div>
+            <div class="author">Vishal Rana</div>
+        </div>
+    </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>CSS Transform Tutorial</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+  <style>
+      body{
+          width: 100vw;
+          height: 100vh;
+          margin:0;
+          padding:0;
+          background: rgb(212, 202, 180);
+          display: grid;
+          place-content: center;
+      }
+      .title{
+          position: absolute;
+          top:40px;
+          left:50%;
+          transform: translateX(-50%);
+          font-size: 30px;
+          font-family: "Livvic";
+          font-weight: 600;
+      }
+      .compass{
+          width:200px;
+          height:200px;
+          border-radius:100px;
+          /* border:2px solid black; */
+          display: grid;
+          place-content: center;
+          background: rgb(212, 202, 180);
+          box-shadow: 5px 5px 10px rgba(0,0,0,0.4), -5px -5px 10px rgba(255,255,255,0.4);
+      }
+      .center{
+          width:50px;
+          height:50px;
+          /* border:2px solid black; */
+          border-radius: 25px;
+          display: grid;
+          place-content: center;
+          box-shadow: inset 5px 5px 10px rgba(0,0,0,0.4),inset -5px -5px 10px rgba(255,255,255,0.4);
+      }
+      .hand{
+            position: relative;
+            height: 200px;
+            width:10px;
+            background: red;
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.4), -5px -5px 10px rgba(255,255,255,0.4);
+      }
+      .hand::before{
+          content: "";
+          width:6px;
+          height: 10px;
+          background: white;
+          position: absolute;
+          top:5px;
+          left:2px;
+          clip-path: circle(3px);
+      }
+      .animate{
+          animation: rotate;
+          animation-duration: 3s;
+          animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+          animation-iteration-count: infinite;
+      }
+      @keyframes rotate{
+          0%{transform: rotate(0deg);}
+          100%{transform: rotate(720deg);}
+      }
+  </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">Compass</div>
+        <div class="compass">
+            <div class="center">
+                <div class="hand">
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/init.js"></script>
+  <script>
+      $(function(){
+        //   var data=document.createElement("div");
+        //   data.style='position:absolute; top: 30px; left: 50%;transform:translateX(-50%);';
+        //     $("body").append(data);
+          $(document).mousemove(function(e){
+              var x= $(window).width()/2 - e.clientX;
+              var y= $(window).height()/2 - e.clientY;
+              var angle= Math.atan(x/y);
+              var theta=angle *(180/Math.PI);
+              if(x>=0&&y>=0){
+                  theta=-theta;
+              }else if(x>0&&y<=0){
+                  theta=180-theta;
+              }else if(x<=0&&y<0){
+                    theta=-180-theta;
+              }else{
+                  theta=360-theta
+              }
+              $(".hand").css("transform","rotate("+theta+"deg)");
+          });
+          $(".title,.compass").click(function(){
+              $(".hand").addClass("animate");
+              setTimeout(function(){$(".hand").removeClass("animate");},3000);
+          })
+      })
+
+  </script>
+
+</body>
+
+</html>
