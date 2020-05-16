@@ -4,7 +4,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width minimum-scale=1.0 maximum-scale=1.0 user-scalable=no">
 
   <title>Test Web</title>
   <!-- Bootstrap CSS -->
@@ -29,7 +29,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="mmenu.html">Mmenu</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,14 +53,14 @@
       </div>
     </nav>
 
+    <div id="VueApp">
+      <ol>
+        <todo-item>
+        </todo-item>
+      </ol>
+    </div>
   </div>
 
-  <div id="VueApp">
-    <ol>
-      <todo-item>
-      </todo-item>
-    </ol>
-  </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -71,6 +71,21 @@
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
   <script src="js/vue.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/mmenu/mmenu.js"></script>
+  <script type="module" src="js/mmenu/wrappers/bootstrap/mmenu.bootstrap.js"></script>
+  <script>
+    Mmenu.configs.classNames.selected = "active";
+    Mmenu.configs.offCanvas.page.selector = "#wrapper";
+
+    document.addEventListener(
+        "DOMContentLoaded", () => {
+            const menu = new Mmenu( "#navbarSupportedContent", {
+                wrappers:['bootstrap']
+            });
+        }
+    );
+  </script>
+
 
 </body>
 

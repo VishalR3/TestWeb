@@ -1,4 +1,4 @@
-import * as DOM from '../../_modules/dom.js';
+import * as DOM from '../../_modules/dom';
 export default function () {
     var _this = this;
     //	Create the menu

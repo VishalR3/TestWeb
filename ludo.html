@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width minimum-scale=1.0 maximum-scale=1.0 user-scalable=no">
+
+    <title>Test Web</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-content: center;
+        }
+
+        #canvas {
+            width: 500px;
+            height: 500px;
+            background-color: #c5bcbc;
+            display: grid;
+            grid-template-rows: 4fr 3fr 4fr;
+            grid-template-columns: 4fr 3fr 4fr;
+            grid-template-areas:
+                "blue path1 green"
+                "path4 center path2"
+                "red path3 yellow";
+        }
+
+        #canvas .home {
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 3px 3px 15px rgba(0, 0, 0, 0.4), inset -3px -3px 15px rgba(255, 255, 255, 0.2);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            place-items: center;
+        }
+
+        #canvas .center {
+            background: rgb(202, 96, 140);
+            box-shadow: inset 3px 3px 15px rgba(0, 0, 0, 0.4), inset -3px -3px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .center::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgb(202, 96, 140);
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4), -3px -3px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        #canvas .paths:nth-of-type(odd) {
+            background-color: #a1a1a1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto;
+            grid-template-areas: "up protect down";
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        #canvas .paths:nth-of-type(even) {
+            background-color: #a1a1a1;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-columns: auto;
+            grid-template-areas: "up""protect""down";
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        #canvas .paths:nth-of-type(odd)>div {
+            border: 1px solid black;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: auto;
+        }
+
+        #canvas .paths:nth-of-type(even)>div {
+            border: 1px solid black;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: auto;
+        }
+
+        #canvas .paths .blocks {
+            border: 1px solid white;
+        }
+
+        .path_protect {
+            background-color: #cc6238;
+        }
+        .goti{
+            width: 20px;
+            height:20px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4), -1px -1px 5px rgba(255, 255, 255, 0.2),inset 1px 1px 5px rgba(0, 0, 0, 0.4),inset -1px -1px 5px rgba(255, 255, 255, 0.2);
+        }
+        .red{
+            background-color: rgb(197, 6, 6);
+        }
+        .green{
+            background-color: rgb(1, 87, 1);
+        }
+        .blue{
+            background-color:rgb(2, 2, 150);
+        }
+        .yellow{
+            background-color: rgb(158, 158, 4);
+        }
+        .dice{
+            position: absolute;
+            top:10px;
+            left:50%;
+            transform: translateX(-50%);
+            background-color: rgb(148, 5, 5);
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            transform-style: preserve-3d;
+            transition: 1s;
+            display: grid;
+            place-content: center;
+            color:white;
+            cursor: pointer;
+            font-size: 30px;
+
+        }
+        .dice:hover{
+            animation: shake 1s;
+            animation-timing-function: linear;
+        }
+        @keyframes shake {
+            0%{
+                transform: translateX(-50%);
+            }
+            25%{
+                transform: translateX(-50%) rotate(20deg);
+            }
+            50%{
+                transform: translateX(-50%);
+            }
+            75%{
+                transform: translateX(-50%) rotate(-20deg);
+            }
+            100%{
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dice">
+
+    </div>
+    <div id="canvas">
+        <div class="home" id="green" style="grid-area:green;background-color: green;">
+            <div class="goti"></div>
+            <div class="goti"></div>
+            <div class="goti"></div>
+            <div class="goti"></div>
+        </div>
+        <div class="home"  id="yellow" style="grid-area:yellow;background-color: yellow;">
+            <div class="goti"></div>
+            <div class="goti"></div>
+            <div class="goti"></div>
+            <div class="goti"></div>
+        </div>
+        <div class="home" id="red" style="grid-area:red;background-color: red;">
+            <div class="goti"></div>
+            <div class="goti"></div>
+            <div class="goti"></div>
+            <div class="goti"></div>
+        </div>
+        <div class="home" id="blue" style="grid-area:blue;background-color: blue;">
+            <div class="goti"></div>
+            <div class="goti"></div>
+            <div class="goti"></div>
+            <div class="goti"></div>
+        </div>
+        <div class="paths" style="grid-area: path1;">
+            <div class="path_up" style="grid-area:up;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+            <div class="path_protect" style="grid-area:protect;">
+                <div class="blocks" style="background-color: #a1a1a1;"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+            <div class="path_down" style="grid-area:down;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+        </div>
+        <div class="paths" style="grid-area: path2;">
+            <div class="path_up" style="grid-area:up;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+            <div class="path_protect" style="grid-area:protect;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks" style="background-color: #a1a1a1;"></div>
+            </div>
+            <div class="path_down" style="grid-area:down;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+        </div>
+        <div class="paths" style="grid-area: path3;">
+            <div class="path_up" style="grid-area:up;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+            <div class="path_protect" style="grid-area:protect;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks" style="background-color: #a1a1a1;"></div>
+            </div>
+            <div class="path_down" style="grid-area:down;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+        </div>
+        <div class="paths" style="grid-area: path4;">
+            <div class="path_up" style="grid-area:up;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+            <div class="path_protect" style="grid-area:protect;">
+                <div class="blocks" style="background-color: #a1a1a1;"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+            <div class="path_down" style="grid-area:down;">
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+                <div class="blocks"></div>
+            </div>
+        </div>
+        <div class="center" style="grid-area: center;"></div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script>
+        $(function(){
+            $(".home").each(function(){
+                let color=$(this).attr("id");
+                $(this).find(".goti").addClass(color);
+            });
+            $(".dice").click(function(){
+                let val=Math.floor(Math.random()*5 + 2);
+                $(this).text(val);
+                if(val==6 || val==1){
+                    
+                }
+            })
+        });
+    </script>
+
+
+
+</body>
+
+</html>
